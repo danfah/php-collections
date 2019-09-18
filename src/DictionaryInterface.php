@@ -165,4 +165,10 @@ interface DictionaryInterface extends \IteratorAggregate, \Countable
      * @return mixed
      */
     public function reduce(callable $callable, $initial);
+
+	/**
+	 * @return CollectionInterface
+	 * @throws Exceptions\InvalidArgumentException
+	 */
+	public function toCollection(): CollectionInterface;
 }

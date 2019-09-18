@@ -274,4 +274,11 @@ class Dictionary implements DictionaryInterface
 
         return $carry;
     }
+
+	/**
+	 * @inheritDoc
+	 */
+	public function toCollection(): CollectionInterface {
+		return new Collection($this->getValueType(), $this->toArray());
+	}
 }
