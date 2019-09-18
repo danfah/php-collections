@@ -28,7 +28,7 @@ class Dictionary implements DictionaryInterface
         $this->valType = $this->determineType($valType);
 
         foreach ($storage as $key => $val) {
-            $this->validateItem($key, $this->keyType);
+            $this->validateItem($key, $this->keyType, $validateKey = true);
             $this->validateItem($val, $this->valType);
 
             $this->storage[$key] = $val;

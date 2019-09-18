@@ -51,7 +51,8 @@ trait TypeValidator
      * Validates an array of items
      *
      * @param array $items an array of items to be validated
-     * @param type
+     * @param string $type
+     * @throws InvalidArgumentException
      */
     protected function validateItems(array $items, $type)
     {
@@ -60,13 +61,21 @@ trait TypeValidator
         }
     }
 
-    protected function validateItem($item, $target)
+	/**
+	 * @param mixed $item
+	 * @param string $target
+	 * @param bool $validateKey if validating key and type is string then int key will be accepted as valid due PHP array design.
+	 * @throws InvalidArgumentException
+	 */
+    protected function validateItem($item, $target, $validateKey = false)
     {
         $type = gettype($item);
 
         $shouldBeCallable = $target === 'callable';
         $isObject = $type === 'object';
         $looseObjectCheck = $target === 'object';
+
+	    if ($validateKey === true && $target === 'string' && $type === 'integer') return;
 
         //callable must be callable
         if ($shouldBeCallable && !is_callable($item)) {
