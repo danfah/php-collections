@@ -43,7 +43,7 @@ class Collection implements CollectionInterface
             $this->validateItems($items, $this->type);
         }
 
-        $this->items = $items;
+        $this->items = array_values($items);
     }
 
     protected function setItemsFromTrustedSource(array $items)
